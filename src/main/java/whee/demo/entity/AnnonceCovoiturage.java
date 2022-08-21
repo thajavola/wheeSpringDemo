@@ -24,7 +24,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,42 +33,39 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnnonceCovoiturage implements Serializable {
-	
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idCovoiturage;
-	
-	@ManyToOne	
+
+	@ManyToOne
 	private Vehicule vehicule;
-	
-	@ManyToOne	
+
+	@ManyToOne
 	private Evenement evenement;
 
-	@ManyToOne	
-	private Compte comptePublier;
-	
-	@Column(nullable=false)	
+	@ManyToOne
+	private Compte compte;
+
+	@Column(nullable = false)
 	private int nbPassage;
-	
-	@Column(nullable=true, length=50)	
+
+	@Column(nullable = true, length = 50)
 	private String lieuDepart;
-	
-	@Column(nullable=true, length=50)	
+
+	@Column(nullable = true, length = 50)
 	private String lieuArriver;
-	
+
 	@Column(columnDefinition = "TIME")
 	private LocalTime heureDepart;
-	
-	@Column(nullable=false)	
+
+	@Column(nullable = false)
 	private float tarif;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateCovoiturage;
-	
-	@ManyToMany(mappedBy="annonceCovoiturages")	
-	private List<Compte> comptesParticiter;
-	
-	
-	
+
+	@ManyToMany(mappedBy = "annonceCovoiturages")
+	private List<Compte> comptes;
+
 }
